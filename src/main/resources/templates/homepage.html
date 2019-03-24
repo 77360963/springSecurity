@@ -1,0 +1,35 @@
+<html>
+<head>
+	<title>Home Page</title>
+	<meta charset="UTF-8">
+</head>
+
+<body>
+    <h1>[[#{greeting}]], This is the body of the sample view</h1>
+    
+    <p>
+    	Select your Locale: 
+    	<a href="/homepage.html?lang=en_US" th:text="#{lang.english}"></a> &nbsp;&nbsp;&nbsp;
+    	<a href="/homepage.html?lang=zh_CN" th:text="#{lang.chinese}"></a>
+    </p>
+    
+	<!-- themyleaf spring security integration -->
+	<div th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">
+         This text is only visible to a user
+        <br/> <br/>
+        <a href="/admin/adminpage.html">Restricted Admin Page</a>
+        <br/> <br/>
+    </div>
+    
+    <!-- themyleaf spring security integration -->
+	<div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+         This text is only visible to an admin
+        <br/>
+        <a href="/admin/adminpage.html">Admin Page</a>
+        <br/>
+    </div>
+
+    <a href="/perform_logout">Logout</a>
+
+</body>
+</html>
